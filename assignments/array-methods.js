@@ -56,21 +56,28 @@ const runners = [{"id":1,"first_name":"Charmain","last_name":"Seiler","email":"c
 // ==== Challenge 1: Use .forEach() ====
 // The event director needs both the first and last names of each runner for their running bibs.  Combine both the first and last names into a new array called fullName. 
 let fullName = [];
+runners.forEach(function (object) {
+let name = object.first_name + " " + object.last_name;
+fullName.push(name)
+})
 console.log(fullName);
 
 // ==== Challenge 2: Use .map() ====
 // The event director needs to have all the runner's first names converted to uppercase because the director BECAME DRUNK WITH POWER. Convert each first name into all caps and log the result
 let allCaps = [];
+allCaps = runners.map(item => item.first_name.toUpperCase());
 console.log(allCaps); 
 
 // ==== Challenge 3: Use .filter() ====
 // The large shirts won't be available for the event due to an ordering issue.  Get a list of runners with large sized shirts so they can choose a different size. Return an array named largeShirts that contains information about the runners that have a shirt size of L and log the result
 let largeShirts = [];
+largeShirts = runners.filter(item => item.shirt_size === 'L');
 console.log(largeShirts);
 
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations into a ticketPriceTotal array and log the result
 let ticketPriceTotal = [];
+ticketPriceTotal.push(runners.reduce((tallied, item) => tallied + item.donation, 0));
 console.log(ticketPriceTotal);
 
 // ==== Challenge 5: Be Creative ====
@@ -78,6 +85,72 @@ console.log(ticketPriceTotal);
 
 // Problem 1
 
+// Create a list of company_name and emails of people who donated over $100 dollars.  Include the amount they donate.
+let prizeNumbers = []
+runners.filter((runner) => {
+    if(runner.donation >= 100){
+        prizeNumbers.push({email: runner.email, company_name: runner.company_name, donation: runner.donation});
+    }
+})
+
+console.log(prizeNumbers)
+
 // Problem 2
+//Show a total count for each different size of t-shirts for all the runners.
+
+let shirtSizes = []
+
+
+
+let xs = []
+let s  = []
+let m = []
+let l  = []
+let xl = []
+let xl2= []
+let xl3= []
+
+runners.forEach((runner) => {
+    if(runner.shirt_size === "XS"){
+        xs.push(runner)
+    }
+    else if(runner.shirt_size === "S"){
+        s.push(runner)
+    }
+    else if(runner.shirt_size === "M"){
+        m.push(runner)
+    }
+    else if(runner.shirt_size === "L"){
+        l.push(runner)
+    }
+    else if(runner.shirt_size === "XL"){
+        xl.push(runner)
+    }
+    else if(runner.shirt_size === "2XL"){
+        xl2.push(runner)
+    }
+    else if(runner.shirt_size === "3XL"){
+        xl3.push(runner)
+    }
+    
+})
+shirtSizes.push(`The total count of XS t-shirts is: ${xs.length}`);
+shirtSizes.push(`The total count of S t-shirts is: ${s.length}`);
+shirtSizes.push(`The total count of M t-shirts is: ${m.length}`);
+shirtSizes.push(`The total count of L t-shirts is: ${l.length}`);
+shirtSizes.push(`The total count of XL t-shirts is: ${xl.length}`);
+shirtSizes.push(`The total count of XL2 t-shirts is: ${xl2.length}`);
+shirtSizes.push(`The total count of XL3 t-shirts is: ${xl3.length}`);
+
+
+console.log(shirtSizes);
 
 // Problem 3
+//return all company names into an Array
+
+companyNames = [];
+
+runners.forEach((runner)=>{
+    companyNames.push(runner.email);
+})
+console.log(companyNames);
